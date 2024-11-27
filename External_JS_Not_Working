@@ -1,0 +1,10 @@
+### Title: "Fixing Dropdown Menu in Mobile Nav"
+- **Date**: November 26, 2024
+- **Description**:
+  I encountered an issue where the dropdown menu in the mobile navbar wasn't toggling when moved to an external JS file.
+- **Solution**:
+  - Used `DOMContentLoaded` to ensure the DOM was fully loaded before running the script.
+  - Added `defer` to the `<script>` tag in the HTML.
+- **Lessons Learned**:
+  - Ensure scripts are executed only after DOM elements are available.
+  - Debug using browser dev tools to check for errors or missing files.
