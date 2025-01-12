@@ -1,0 +1,54 @@
+# Fixing External Links Not Working in GitHub Pages
+
+**Date:** January 11, 2025
+
+---
+
+## **Description**
+While working on a project hosted on GitHub Pages, external CSS and JavaScript files were not loading properly. The browser console displayed `404` errors indicating the files could not be found. This issue occurred because the file paths were incorrect or incompatible with the GitHub Pages directory structure.
+
+---
+
+## **Cause**
+1. The file paths used in the HTML were absolute, starting with `/Daily_Updates/assets/...`. This caused the browser to look for the assets in the root directory of the domain, rather than the project directory.
+2. GitHub Pages serves files relative to the repository's root unless configured differently.
+3. The paths didn’t account for the repository name in the URL when hosted on GitHub Pages.
+
+---
+
+## **Solution**
+To resolve the issue, the file paths were updated to relative paths. This ensured the files were correctly located regardless of the hosting environment.
+
+### Updated Code:
+```html
+<link href="./assets/settings.css" rel="stylesheet">
+<script src="./assets/settings.js"></script>
+<script src="./assets/main.js"></script>
+```
+
+### Key Points:
+- The `./` ensures the browser looks in the current directory for the files.
+- This approach works both locally and on GitHub Pages.
+
+---
+
+## **Steps to Fix**
+1. Open the `daily.html` file.
+2. Locate the `<link>` and `<script>` tags referencing external files.
+3. Update the paths to use relative paths (`./assets/...`) instead of absolute paths (`/Daily_Updates/assets/...`).
+4. Save the changes and test locally using a simple server (e.g., `npx live-server`).
+5. Commit and push the changes to the GitHub repository.
+6. Verify the fix by checking the deployed GitHub Pages site.
+
+---
+
+## **Lessons Learned**
+1. **Path Types:** Understand the difference between absolute and relative paths in HTML:
+   - Absolute paths: Start from the domain root (e.g., `/path/to/file`).
+   - Relative paths: Start from the current directory (e.g., `./file`).
+2. **GitHub Pages Behavior:** When hosting on GitHub Pages, file paths must account for the repository name as part of the URL unless explicitly configured.
+3. **Local Testing:** Always test paths locally with a simple web server to simulate deployment behavior.
+
+---
+
+This documentation will serve as a reference for future similar issues and help others encountering this problem in GitHub Pages hosting.
